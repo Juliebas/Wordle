@@ -1,3 +1,4 @@
+import tkinter as tk
 import numpy as np
 from unidecode import unidecode
 import random as r
@@ -33,9 +34,8 @@ def retira_lixo(ls):
            lista_nova1.append(lista_nova[i])
     return lista_nova1
 
-
 def banco_de_palavras():
-    f = retira_n(le("Programas.txt"))
+    f = retira_n(le("Banco_de_nomes.txt"))
     return retira_lixo(f)
 
 class Termo():
@@ -47,6 +47,7 @@ class Termo():
         self.tent = 0
     
     def coloca_palavra(self, pal):
+        print(self.pal)
         d = self.pal
         for i in range(5):
             if pal[i] in d:
@@ -55,13 +56,15 @@ class Termo():
             if pal[i] == self.pal[i]:
                 self.acertos[self.tent,i] += 1
         print(self.acertos)
-        self.tent += 1
-        if self.acertos[self.tent, ] == np.array([2,2,2,2,2]):
+        if (self.acertos[self.tent, ] ==  np.array([2,2,2,2,2])).all():
             return "Você é foda"
+        self.tent += 1
         if self.tent < 6:
             self.coloca_palavra(input("Nova palavra: "))
+        else:
+            return "Ruim"
 
 v = Termo()
-v.coloca_palavra(input("Nova palavra??: "))
+print(v.coloca_palavra(input("Nova palavra??: ")))
                 
 
