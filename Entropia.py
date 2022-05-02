@@ -1,4 +1,4 @@
-import tkinter as tk
+import pygame as pg
 import numpy as np
 from unidecode import unidecode
 import random as r
@@ -64,7 +64,31 @@ class Termo():
         else:
             return "Ruim"
 
-v = Termo()
-print(v.coloca_palavra(input("Nova palavra??: ")))
-                
+class Interface():
+
+    def __init__(self):
+        pg.init() 
+        self.tela = pg.display.set_mode((800,600)) #cria janela
+        self.rodando = True
+        pg.display.set_caption("Termo")
+        icone = pg.image.load('t.png')
+        pg.display.set_icon(icone)
+        while self.rodando: #loop do jogo
+            for event in pg.event.get():
+                if event.type == pg.QUIT:
+                    self.rodando = False
+            
+            self.tela.fill((128,128,128))
+            pg.display.update()
+        
+
+def main():
+    #v = Termo()
+    #v.coloca_palavra(input("Nova palavra??: "))
+    Interface()
+
+if __name__ == "__main__":
+    main()
+
+
 
