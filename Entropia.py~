@@ -51,14 +51,11 @@ class Termo():
 
         d = self.pal
         for i in range(5):
-            if pal[i] == self.pal[i]:
-                self.acertos[self.tent,i] += 2
-                d = d.replace(pal[i], '', 1)
-        for i in range(5):
             if pal[i] in d:
                 self.acertos[self.tent,i] += 1
                 d = d.replace(pal[i], '', 1)
-            
+            if pal[i] == self.pal[i]:
+                self.acertos[self.tent,i] += 1
 
         if (self.acertos[self.tent, ] ==  np.array([2,2,2,2,2])).all():
             self.ganhou = True
@@ -94,7 +91,6 @@ class Interface():
             for event in pg.event.get():
                 if event.type == pg.QUIT:
                     self.rodando = False
-                    print(v.pal)
                 if event.type == pg.KEYDOWN:
                     if v.ganhou:
                         pass
