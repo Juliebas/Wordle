@@ -2,6 +2,7 @@ import pygame as pg
 import numpy as np
 from unidecode import unidecode
 import random as r
+import requests
 
 def le(s):
     '''
@@ -132,11 +133,14 @@ class Interface():
             clock.tick(60)
             pg.display.update()
 
+def le_site():
+
+    myfile = requests.get('https://www.linguateca.pt/acesso/tokens/formas.totalbr.txt', stream=True).raw
+
+    print(myfile)
+
 def main():
     Interface()
 
 if __name__ == "__main__":
     main()
-
-
-
